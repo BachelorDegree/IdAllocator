@@ -1,0 +1,20 @@
+syntax = "proto3";
+package idallocator;
+
+message AllocateIdReq{
+    bytes id_namespace = 1;
+}
+message AllocateIdResp{
+    uint64 id = 1;
+}
+message BatchAllocateIdReq{
+    bytes id_namespace = 1;
+    uint32 count = 2;
+}
+message BatchAllocateIdResp{
+    repeated uint64 ids = 1;
+}
+service IdAllocatorService{
+    rpc AllocateId (AllocateIdReq) returns (AllocateIdResp);
+    rpc BatchAllocateId (BatchAllocateIdReq) returns (BatchAllocateIdResp);
+}
